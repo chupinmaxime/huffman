@@ -1,0 +1,199 @@
+
+% LTeX: language=en
+
+% huffman : draw binary huffman trees with MetaPost/MetaObj
+%
+% Originally written by Maxime Chupin <notezik@gmail.com>,
+% 2023.
+%
+% Distributed under the terms of the GNU free documentation licence:
+%   http://www.gnu.org/licenses/fdl.html
+% without any invariant section or cover text.
+
+\documentclass[english]{ltxdoc}
+
+\input{huffman-preamble}
+
+\usepackage[english]{babel}
+
+\makeindex[title=Command Index, columns=2]
+
+
+
+%\lstset{moredelim=*[s][\color{red}\rmfamily\itshape]{<}{>}}
+%\lstset{moredelim=*[s][\color{blue}\rmfamily\itshape]{<<}{>>}}
+
+\begin{document}
+
+\title{{Huffman} : drawing binary Huffman trees with \hologo{METAPOST} and \MO/}
+\author{Maxime Chupin, \url{notezik@gmail.com}}
+\date{\today}
+
+%% === Page de garde ===================================================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \node[below right, shift={(-4pt,4pt)}] at (current page.north west) {%
+    \includegraphics{fond.pdf}%
+  };
+\end{tikzpicture}%
+
+\noindent
+{\Huge \texttt{huffman}}\par\bigskip
+\noindent
+{\Large  drawing binary Huffman trees \\[0.2cm]with \hologo{METAPOST} and \MO/}\\[1cm]
+\parbox{0.6\textwidth}{
+  \begin{mplibcode}
+    input huffman
+
+    string charList[];
+numeric frequency[];
+show_bits:=false;
+beginfig(1);
+charList[4]:="a"; frequency[4]:=4;
+charList[5]:="b"; frequency[5]:=5;
+charList[3]:="c"; frequency[3]:=6;
+charList[1]:="d"; frequency[1]:=7;
+charList[2]:="e"; frequency[2]:=10;
+charList[6]:="f"; frequency[6]:=10;
+charList[7]:="g"; frequency[7]:=18;
+charList[8]:="h"; frequency[8]:=40;
+newBinHuffman.myHuff(8)(charList,frequency) "treemode(T)", "vbsep(0.3cm)";
+myHuff.c=origin;
+drawObj(myHuff);
+endfig;
+  \end{mplibcode}
+}\hfill
+\parbox{0.5\textwidth}{\Large\raggedleft
+  \textbf{Contributor}\\
+  Maxime \textsc{Chupin}\\
+  \url{notezik@gmail.com}
+}
+\vfill
+\begin{center}
+  Version 0.1, 2023, April, 21th \\
+  \url{https://plmlab.math.cnrs.fr/mchupin/huffman}
+\end{center}
+%% == Page de garde ====================================================
+\newpage
+
+%\maketitle
+
+\begin{abstract}
+  This \hologo{METAPOST} package allows to draw binary Huffman trees from two
+  arrays : a string one, and a value one. It is based on \MO/ package which
+  provides many tools to build trees in general.
+\end{abstract}
+
+
+\begin{center}
+  \url{https://plmlab.math.cnrs.fr/mchupin/huffman}
+  \url{https://github.com/chupinmaxime/huffman}
+\end{center}
+
+\tableofcontents
+
+\bigskip
+
+\begin{tcolorbox}[ arc=0pt,outer arc=0pt,
+  colback=darkred!3,
+  colframe=darkred,
+  breakable,
+  boxsep=0pt,left=5pt,right=5pt,top=5pt,bottom=5pt, bottomtitle =
+  3pt, toptitle=3pt,
+  boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt, toprule at break =
+  0pt, bottomrule at break = 0pt,]
+  \itshape
+  This package is in beta version---do not hesitate to report bugs, as well as requests for improvement.
+\end{tcolorbox}
+
+\section{Installation}
+
+\huffman is on \ctan{} and can also be installed via the package manager of your
+distribution.
+
+\begin{center}
+  \url{https://www.ctan.org/pkg/huffman}
+\end{center}
+
+
+\subsection{With \TeX live under Linux or macOS}
+
+To install \huffman with \TeX Live, you will have to create the directory
+\lstinline+texmf+ directory in your \lstinline+home+. 
+
+\begin{commandshell}
+mkdir ~/texmf
+\end{commandshell}
+
+Then, you will have to place the \lstinline+huffman.mp+ file in the 
+\begin{center}
+  \lstinline+~/texmf/metapost/huffman/+
+\end{center}
+
+
+Once this is done, \huffman will be loaded with the classic \MP
+input code
+\begin{mpcode}
+input huffman
+\end{mpcode}
+
+\subsection{With Mik\TeX{} and Windows}
+
+These two systems are unknown to the author of \huffman, so we
+refer you to the Mik\TeX documentation concerning the addition of local packages:
+\begin{center}
+  \url{http://docs.miktex.org/manual/localadditions.html}
+\end{center}
+
+
+
+\subsection{Dependencies}
+
+
+\huffman depends, of course on \MP~\cite{ctan-metapost}, as well as the packages \package{metaobj}~\cite{ctan-metaobj}
+and---if \huffman is not used with \hologo{LuaLaTeX} and the \package{luamplib}
+package---the \package{latexmp} package.
+
+\section{Main Command}
+
+The package \huffman provides one principal command (which is a \MO/ like
+constructor):
+
+\commande|newBinHuffmanTree.«name»(«sizeofarrays»)(«symbarray»,«valuearray»)|\smallskip\index{newBinHuffman@\lstinline+newBinHuffmanTree+}
+
+
+\begin{description}
+  \item[\meta{name}:] is the name of the object;
+  \item[\meta{sizeofarray}:] is the size (integer) of the arrays;
+  \item[\meta{symbarray}:] is the array of \lstinline+string+ containing the
+  symboles;
+  \item[\meta{valuearray}:] is the array of \lstinline+numeric+ containing the
+  values associated to the symboles.
+\end{description}
+
+
+
+\begin{ExempleMP}
+input huffman
+
+beginfig(0);
+string charList[];
+numeric frequency[];
+charList[1]:="a"; frequency[1]:=0.04;
+charList[2]:="b"; frequency[2]:=0.05;
+charList[3]:="c"; frequency[3]:=0.06;
+charList[4]:="d"; frequency[4]:=0.07;
+charList[5]:="e"; frequency[5]:=0.1;
+charList[6]:="f"; frequency[6]:=0.1;
+charList[7]:="g"; frequency[7]:=0.18;
+charList[8]:="h"; frequency[8]:=0.4;
+
+newBinHuffman.myHuff(8)(charList,frequency);
+myHuff.c=origin;
+drawObj(myHuff);
+endfig;
+\end{ExempleMP}
+
+\printbibliography
+\printindex
+\end{document}

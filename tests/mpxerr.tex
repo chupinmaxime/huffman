@@ -1,0 +1,87 @@
+%&latex
+\documentclass{article}
+\begin{document}
+
+\gdef\mpxshipout{\shipout\hbox\bgroup%
+  \setbox0=\hbox\bgroup}%
+\gdef\stopmpxshipout{\egroup  \dimen0=\ht0 \advance\dimen0\dp0
+  \dimen1=\ht0 \dimen2=\dp0
+  \setbox0=\hbox\bgroup
+    \box0
+    \ifnum\dimen0>0 \vrule width1sp height\dimen1 depth\dimen2 
+    \else \vrule width1sp height1sp depth0sp\relax
+    \fi\egroup
+  \ht0=0pt \dp0=0pt \box0 \egroup}
+\mpxshipout% line 7 ./ltx-test.tmp
+0.04%
+\stopmpxshipout
+\mpxshipout% line 8 ./ltx-test.tmp
+s_1%
+\stopmpxshipout
+\mpxshipout% line 9 ./ltx-test.tmp
+$s_1$%
+\stopmpxshipout
+\mpxshipout% line 10 ./ltx-test.tmp
+0.05%
+\stopmpxshipout
+\mpxshipout% line 11 ./ltx-test.tmp
+b%
+\stopmpxshipout
+\mpxshipout% line 12 ./ltx-test.tmp
+$b$%
+\stopmpxshipout
+\mpxshipout% line 13 ./ltx-test.tmp
+0.06%
+\stopmpxshipout
+\mpxshipout% line 14 ./ltx-test.tmp
+c%
+\stopmpxshipout
+\mpxshipout% line 15 ./ltx-test.tmp
+$c$%
+\stopmpxshipout
+\mpxshipout% line 16 ./ltx-test.tmp
+0.07%
+\stopmpxshipout
+\mpxshipout% line 17 ./ltx-test.tmp
+d%
+\stopmpxshipout
+\mpxshipout% line 18 ./ltx-test.tmp
+$d$%
+\stopmpxshipout
+\mpxshipout% line 19 ./ltx-test.tmp
+0.1%
+\stopmpxshipout
+\mpxshipout% line 20 ./ltx-test.tmp
+e%
+\stopmpxshipout
+\mpxshipout% line 21 ./ltx-test.tmp
+$e$%
+\stopmpxshipout
+\mpxshipout% line 22 ./ltx-test.tmp
+0.1%
+\stopmpxshipout
+\mpxshipout% line 23 ./ltx-test.tmp
+f%
+\stopmpxshipout
+\mpxshipout% line 24 ./ltx-test.tmp
+$f$%
+\stopmpxshipout
+\mpxshipout% line 25 ./ltx-test.tmp
+0.18%
+\stopmpxshipout
+\mpxshipout% line 26 ./ltx-test.tmp
+g%
+\stopmpxshipout
+\mpxshipout% line 27 ./ltx-test.tmp
+$g$%
+\stopmpxshipout
+\mpxshipout% line 28 ./ltx-test.tmp
+0.4%
+\stopmpxshipout
+\mpxshipout% line 29 ./ltx-test.tmp
+h%
+\stopmpxshipout
+\mpxshipout% line 30 ./ltx-test.tmp
+$h$%
+\stopmpxshipout
+\end{document}

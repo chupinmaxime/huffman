@@ -1,0 +1,33 @@
+\documentclass{article}
+
+\usepackage{luamplib}
+
+\begin{document}
+\begin{mplibcode}
+    show "coucou";
+input huffman;
+
+string charList[];
+numeric frequency[];
+%show_bits:=false;
+%show_node_values:=false;
+%show_leaf_values:=false;
+%set_node_size(8pt);
+beginfig(1);
+charList[4]:="a"; frequency[4]:=4;
+charList[5]:="b"; frequency[5]:=5;
+charList[3]:="c"; frequency[3]:=6;
+charList[1]:="d"; frequency[1]:=7;
+charList[2]:="e"; frequency[2]:=10;
+charList[6]:="f"; frequency[6]:=10;
+charList[7]:="g"; frequency[7]:=18;
+charList[8]:="h"; frequency[8]:=40;
+newBinHuffman.myHuff(8)(charList,frequency) "treemode(T)", "vbsep(0.3cm)";
+myHuff.c=origin;
+drawObj(myHuff);
+endfig;
+\end{mplibcode}
+
+\end{document}
+
+

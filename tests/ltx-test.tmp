@@ -1,0 +1,45 @@
+verbatimtex
+%&latex
+\documentclass{article}
+\begin{document}
+etex
+picture latexmp_picture[];
+latexmp_picture[1]:= btex 0.04 etex ;
+latexmp_picture[2]:= btex $s_1$ etex ;
+latexmp_picture[3]:= btex $s_1$ etex ;
+latexmp_picture[4]:= btex 0.04 etex ;
+latexmp_picture[5]:= btex 0.05 etex ;
+latexmp_picture[6]:= btex $s_2$ etex ;
+latexmp_picture[7]:= btex $s_2$ etex ;
+latexmp_picture[8]:= btex 0.05 etex ;
+latexmp_picture[9]:= btex 0.09 etex ;
+latexmp_picture[10]:= btex 0.06 etex ;
+latexmp_picture[11]:= btex $s_3$ etex ;
+latexmp_picture[12]:= btex $s_3$ etex ;
+latexmp_picture[13]:= btex 0.06 etex ;
+latexmp_picture[14]:= btex 0.07 etex ;
+latexmp_picture[15]:= btex $s_4$ etex ;
+latexmp_picture[16]:= btex $s_4$ etex ;
+latexmp_picture[17]:= btex 0.07 etex ;
+latexmp_picture[18]:= btex 0.13 etex ;
+latexmp_picture[19]:= btex 0.1 etex ;
+latexmp_picture[20]:= btex $s_5$ etex ;
+latexmp_picture[21]:= btex $s_5$ etex ;
+latexmp_picture[22]:= btex 0.1 etex ;
+latexmp_picture[23]:= btex 0.19 etex ;
+latexmp_picture[24]:= btex 0.1 etex ;
+latexmp_picture[25]:= btex $s_6$ etex ;
+latexmp_picture[26]:= btex $s_6$ etex ;
+latexmp_picture[27]:= btex 0.1 etex ;
+latexmp_picture[28]:= btex 0.23 etex ;
+latexmp_picture[29]:= btex 0.18 etex ;
+latexmp_picture[30]:= btex $s_7$ etex ;
+latexmp_picture[31]:= btex $s_7$ etex ;
+latexmp_picture[32]:= btex 0.18 etex ;
+latexmp_picture[33]:= btex 0.37 etex ;
+latexmp_picture[34]:= btex 0.6 etex ;
+latexmp_picture[35]:= btex 0.4 etex ;
+latexmp_picture[36]:= btex $s_8$ etex ;
+latexmp_picture[37]:= btex $s_8$ etex ;
+latexmp_picture[38]:= btex 0.4 etex ;
+latexmp_picture[39]:= btex 1 etex ;
