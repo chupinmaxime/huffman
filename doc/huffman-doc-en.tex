@@ -171,7 +171,7 @@ constructor):
   values associated to the symboles.
 \end{description}
 
-
+The data arrays should begin at index 1.  
 
 \begin{ExempleMP}
 input huffman
@@ -193,6 +193,115 @@ myHuff.c=origin;
 drawObj(myHuff);
 endfig;
 \end{ExempleMP}
+
+\section{Package Options}
+
+You can modify the size of the internal nodes of the tree with the following
+command:
+
+\commande|set_node_size(«dim»)|\smallskip\index{set_node_size@\lstinline+set_node_size+}
+\begin{description}
+  \item[\meta{dim}:] is the diameter of the circle with unity (default: 13pt).
+\end{description} 
+
+You can change the color for the symbol boxes with the following command:
+
+\commande|set_leaf_color(«color»)|\smallskip\index{set_leaf_color@\lstinline+set_leaf_color+}
+\begin{description}
+  \item[\meta{color}:] is a \hologo{METAPOST} \lstinline+color+.
+\end{description} 
+
+You can hide the bit in the edges of the tree with the following boolean
+(\lstinline+true+ by default):
+
+\commande|show_bits|\smallskip\index{show_bits@\lstinline+show_bits+}
+
+Similarly, you can set the following boolean to \lstinline+false+ to hide the
+node values: 
+
+\commande|show_node_values|\smallskip\index{show_node_values@\lstinline+show_node_values+}
+
+Finally, you can set the following boolean to \lstinline+false+ to hide the
+leaf values:
+
+\commande|show_leaf_values|\smallskip\index{show_leaf_values@\lstinline+show_leaf_values+}
+
+Here an example combining all these commands and variables.
+
+\begin{ExempleMP}
+input huffman
+
+beginfig(0);
+string charList[];
+numeric frequency[];
+charList[1]:="s_1"; frequency[1]:=2;
+charList[2]:="s_2"; frequency[2]:=4;
+charList[3]:="s_3"; frequency[3]:=2;
+charList[4]:="s_4"; frequency[4]:=12;
+charList[5]:="s_5"; frequency[5]:=8;
+
+set_leaf_color(0.2[white,green]);
+set_node_size(8pt);
+show_bits:=false;
+show_node_values:=false;
+show_leaf_values:=false;
+newBinHuffman.myHuff(5)(charList,frequency);
+myHuff.c=origin;
+drawObj(myHuff);
+endfig;
+\end{ExempleMP}
+  
+
+
+\section{\MO/ Tree Options}
+
+Because the Huffman tree is build using \MO/ tree constructor, the \MO/ tree
+options are available. All of them are not well suited for this application
+mostly because the Huffman tree is build using elementary trees, to which the
+options we give to the Huffman constructor is passed to all the subtrees.
+
+We give in table~\ref{tab:options} the \MO/ options for the trees that could be
+used for the Huffman constructor.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{HHHp{5.5cm}}
+  \toprule 
+  Option & Type & Default & Description \\
+  \midrule 
+  treemode & string & "D" & direction in which the tree develops; there are
+  four different possible values: \lstinline+"D"+ (default),
+  \lstinline+"U"+, \lstinline+"L"+ and \lstinline+"R"+\\
+  treeflip & boolean & false & if true, reverses the order of the subtrees\\
+  treenodehsize & numeric & -1pt & if non-negative, all the nodes are assumed to
+  have this width\\
+  treenodevsize & numeric & -1pt & if non-negative, all the nodes are assumed to
+  have this height\\
+  dx & numeric & 0 & horizontal clearance around the tree\\
+  dy & numeric & 0 & vertical clearance around the tree\\
+  hsep & numeric & 1cm & for a horizontal tree, this is the separation be-
+  tween the root and the subtrees\\
+  vsep & numeric & 1cm & for a vertical tree, this is the separation be-
+  tween the root and the subtrees\\
+  hbsep & numeric & 1cm &for a vertical tree, this is the horizontal separation between subtrees;
+  the subtrees are actually put in a \lstinline+HBox+ and the value of this
+  option is passed to the \lstinline+HBox+ constructor\\
+  vbsep & numeric & 1cm & for an horizontal tree, this is the vertical separation between subtrees;
+  the subtrees are actually put in a \lstinline+HBox+ and the value of this
+  option is passed to the \lstinline+HBox+ constructor\\
+  edge & string & "ncline" & name of a connection command (se \MO/
+  documentation)
+  \\
+  Dalign & string & "top" & vertical alignment of subtrees for trees that go
+  down (the root on the top); the other possible
+  values are \lstinline+"center"+ and \lstinline+"bot"+\\
+  \bottomrule
+\end{tabular}
+\caption{Table of \MO/ tree options.}\label{tab:options}
+\end{table}
+
+\section{Constructors}
+
 
 \printbibliography
 \printindex

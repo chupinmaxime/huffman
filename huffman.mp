@@ -221,7 +221,8 @@ vardef newBinHuffman@#(expr nbr)(suffix ch, fr) text options=
     endfor;
     % on dublique l’objet en prenant comme nom ce qui est donné à l’utilisation
     % de newHuffman 
-    duplicateObj(@#,scantokens("Tree"&decimal(_nbrnode-1)&"_"&decimal _huffmanTreeNbr));
+    duplicateObj(@#,scantokens("Tree"&decimal(_nbrnode-1)&"_"&decimal
+    _huffmanTreeNbr));
 enddef;
 
 
