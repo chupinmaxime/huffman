@@ -300,8 +300,62 @@ used for the Huffman constructor.
 \caption{Table of \MO/ tree options.}\label{tab:options}
 \end{table}
 
+Here is an example of using some of these options.
+
+\begin{ExempleMP}
+input huffman
+
+beginfig(0);
+string charList[];
+numeric frequency[];
+charList[1]:="s_1"; frequency[1]:=2;
+charList[2]:="s_2"; frequency[2]:=4;
+charList[3]:="s_3"; frequency[3]:=2;
+charList[4]:="s_4"; frequency[4]:=12;
+charList[5]:="s_5"; frequency[5]:=8;
+
+newBinHuffman.myHuff(5)(charList,frequency)
+"treemode(R)","treeflip(true)","hsep(1.5cm)", "edge(nccurve)" , "angleA(0)", "angleB(0)";
+myHuff.c=origin;
+drawObj(myHuff);
+endfig;
+\end{ExempleMP}
+  
+\subsection{Access to Nodes and Leaves}
+
+To access the nodes and the trees, you can use the \lstinline+treeroot+ command
+from \MO/, see the documentation for details.
+
+\commande|treeroot(Obj(«name»))(«int»,«int»,etc.)|\smallskip\index{treeroot@\lstinline+treeroot+}
+
+The sequence of \meta{int} gives the choice of branch where the children are
+numbered from 1 to $n$.  
+
+The following example shows a use of this mecanism.
+\begin{ExempleMP}
+input huffman;
+beginfig(0);
+string charList[];
+numeric frequency[];
+charList[1]:="s_1"; frequency[1]:=2;
+charList[2]:="s_2"; frequency[2]:=4;
+charList[3]:="s_3"; frequency[3]:=2;
+charList[4]:="s_4"; frequency[4]:=12;
+charList[5]:="s_5"; frequency[5]:=8;
+
+newBinHuffman.myHuff(5)(charList,frequency);
+myHuff.c=origin;
+ncarcbox(treeroot(Obj(myHuff))(2,1,2))(treeroot(Obj(myHuff))(2,2))
+"linestyle(dashed evenly)", "nodesepA(5mm)", "nodesepB(5mm)" ;
+drawObj(myHuff);
+endfig;
+\end{ExempleMP}
+
+
 \section{Constructors}
 
+The Huffman algorithm use only three constructors that you can redefine to adapt
+the tree to your needs. 
 
 \printbibliography
 \printindex

@@ -1,0 +1,16 @@
+input huffman;
+beginfig(0);
+string charList[];
+numeric frequency[];
+charList[1]:="s_1"; frequency[1]:=2;
+charList[2]:="s_2"; frequency[2]:=4;
+charList[3]:="s_3"; frequency[3]:=2;
+charList[4]:="s_4"; frequency[4]:=12;
+charList[5]:="s_5"; frequency[5]:=8;
+
+newBinHuffman.myHuff(5)(charList,frequency);
+myHuff.c=origin;
+nbox(treeroot(Obj(myHuff))(2,1))(treeroot(Obj(myHuff))(2,2));
+drawObj(myHuff);
+endfig;
+end

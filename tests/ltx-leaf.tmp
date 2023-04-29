@@ -1,0 +1,30 @@
+verbatimtex
+%&latex
+\documentclass{article}
+\begin{document}
+etex
+picture latexmp_picture[];
+latexmp_picture[1]:= btex 2 etex ;
+latexmp_picture[2]:= btex $s_1$ etex ;
+latexmp_picture[3]:= btex $s_1$ etex ;
+latexmp_picture[4]:= btex 2 etex ;
+latexmp_picture[5]:= btex 2 etex ;
+latexmp_picture[6]:= btex $s_3$ etex ;
+latexmp_picture[7]:= btex $s_3$ etex ;
+latexmp_picture[8]:= btex 2 etex ;
+latexmp_picture[9]:= btex 4 etex ;
+latexmp_picture[10]:= btex 4 etex ;
+latexmp_picture[11]:= btex $s_2$ etex ;
+latexmp_picture[12]:= btex $s_2$ etex ;
+latexmp_picture[13]:= btex 4 etex ;
+latexmp_picture[14]:= btex 8 etex ;
+latexmp_picture[15]:= btex 8 etex ;
+latexmp_picture[16]:= btex $s_5$ etex ;
+latexmp_picture[17]:= btex $s_5$ etex ;
+latexmp_picture[18]:= btex 8 etex ;
+latexmp_picture[19]:= btex 16 etex ;
+latexmp_picture[20]:= btex 12 etex ;
+latexmp_picture[21]:= btex $s_4$ etex ;
+latexmp_picture[22]:= btex $s_4$ etex ;
+latexmp_picture[23]:= btex 12 etex ;
+latexmp_picture[24]:= btex 28 etex ;

@@ -8,7 +8,7 @@ show_empty_boxes:=true;
 % pour pouvoir appeler plusieurs fois le Huffman
 _huffmanTreeNbr:=0;
 
-def get_huffmanTreeNbr=
+def get_huffman_tree_nbr=
     _huffmanTreeNbr
 enddef;
 
