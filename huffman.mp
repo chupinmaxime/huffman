@@ -45,6 +45,7 @@ vardef newHuffmanLeaf@#(expr ch)(expr v) text options=
     % @# est l’identifiant de la feuille
     % c est le caractère considéré (ou la chaine)
     % v est la proba ou l’entier associé
+    save _text_v, _text_token,_height_v,_height_token,_height_max,_width_token,_width_v;
     picture _text_v,_text_token;
     % on calcule le height max des deux écritures pour faire deux boites de même
     % hauteur 
@@ -98,6 +99,7 @@ enddef;
 
 % fonction de tri à bulle d’un tableau
 vardef _sorttab(expr nbr)(suffix tab,chartab)=
+    save _tempchar;
     string _tempchar;
     for i:=nbr downto 1:
         for j:=1 upto i-1:
@@ -119,7 +121,7 @@ vardef newBinHuffman@#(expr nbr)(suffix ch, fr) text options=
     % ch : tableau des symboles à coder (string)
     % fr : tableau des valeurs associées (numeric)
     _huffmanTreeNbr:=_huffmanTreeNbr+1;
-    save _frtab,_chtab,_nbr;
+    save _frtab,_chtab,_nbr,_nbrnode,_nbrleaf;
     % on copie les tableaux 
     numeric _frtab[];
     numeric _nbr;

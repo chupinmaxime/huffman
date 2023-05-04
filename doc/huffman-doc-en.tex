@@ -159,7 +159,7 @@ package---the \package{latexmp} package.
 The package \huffman provides one principal command (which is a \MO/ like
 constructor):
 
-\commande|newBinHuffmanTree.«name»(«sizeofarrays»)(«symbarray»,«valuearray»)|\smallskip\index{newBinHuffman@\lstinline+newBinHuffmanTree+}
+\commande|newBinHuffman.«name»(«sizeofarrays»)(«symbarray»,«valuearray»)|\smallskip\index{newBinHuffman@\lstinline+newBinHuffman+}
 
 
 \begin{description}
@@ -194,6 +194,7 @@ drawObj(myHuff);
 endfig;
 \end{ExempleMP}
 
+Beware, the symbols are composed in mathematical \TeX{} mode. 
 \section{Package Options}
 
 You can modify the size of the internal nodes of the tree with the following
@@ -326,7 +327,7 @@ endfig;
 To access the nodes and the trees, you can use the \lstinline+treeroot+ command
 from \MO/, see the documentation for details.
 
-\commande|treeroot(Obj(«name»))(«int»,«int»,etc.)|\smallskip\index{treeroot@\lstinline+treeroot+}
+\commande|ntreepos(Obj(«name»))(«int»,«int»,etc.)|\smallskip\index{ntreepos@\lstinline+ntreepos+}
 
 The sequence of \meta{int} gives the choice of branch where the children are
 numbered from 1 to $n$.  
@@ -345,17 +346,86 @@ charList[5]:="s_5"; frequency[5]:=8;
 
 newBinHuffman.myHuff(5)(charList,frequency);
 myHuff.c=origin;
-ncarcbox(treeroot(Obj(myHuff))(2,1,2))(treeroot(Obj(myHuff))(2,2))
+ncarcbox(ntreepos(Obj(myHuff))(2,1,2))(ntreepos(Obj(myHuff))(2,2))
 "linestyle(dashed evenly)", "nodesepA(5mm)", "nodesepB(5mm)" ;
 drawObj(myHuff);
 endfig;
 \end{ExempleMP}
 
+Of course, this only can be used in two steps, first build the tree, then
+annotate it. 
 
 \section{Constructors}
 
 The Huffman algorithm use only three constructors that you can redefine to adapt
-the tree to your needs. 
+the tree to your needs. Here are the three constructors (roughly commented in
+French) defined in this package. We will no discus the code here but
+you are free to redefine and adapt it.
+
+\begin{mpcode}[title={Leaf Code}]
+% style d’une feuille caractère et proba
+vardef newHuffmanLeaf@#(expr ch)(expr v) text options=
+    % @# est l’identifiant de la feuille
+    % c est le caractère considéré (ou la chaine)
+    % v est la proba ou l’entier associé
+    save _text_v,
+    _text_token,_height_v,_height_token,_height_max,_width_token,_width_v;
+    picture _text_v,_text_token;
+    % on calcule le height max des deux écritures pour faire deux boites de même
+    % hauteur 
+    _text_v := textext(v);
+    _text_token := textext("$"&ch&"$");
+    _height_v := abs((ulcorner _text_v) - (llcorner _text_v));
+    _width_v := abs(urcorner _text_v - ulcorner _text_v);
+    _height_token := abs(ulcorner _text_token - llcorner _text_token);
+    _width_token := abs(urcorner _text_token - ulcorner _text_token);
+    _height_max := max(_height_token,_height_v);
+    % on fabrique deux boîtes vides aux bonne dimensions
+    % et on ajoute un label au centre de celles-ci 
+    if(show_leaf_values):    
+        newEmptyBox.scantokens(str @# & "ch1")(_width_token+4,2_height_max)
+        "framed(true)","fillcolor(_huffmanLeaf)", "filled(true)", options;
+        ObjLabel.Obj(scantokens(str @# & "ch1"))(textext("$" & ch & "$"));
+        newEmptyBox.scantokens(str @# & "ch2")(_width_v+4,2_height_max)
+        "framed(true)", options;
+        ObjLabel.Obj(scantokens(str @# & "ch2"))(textext(v));
+        % on fixe relativement les coordonnées des deux boites pour qu’elles se % touchent 
+        scantokens(str @# & "ch1").e=scantokens(str @# & "ch2").w;
+        % on fabrique un container qui les regroupes et qui sera la feuille
+        newContainer.@#(scantokens(str @# & "ch1"),scantokens(str @# & "ch2"));
+    else:
+        % si seulement le symbole
+        newBox.@#(textext("$" & ch & "$"))
+        "framed(true)","fillcolor(_huffmanLeaf)", "filled(true)", options;
+    fi
+enddef;
+\end{mpcode}
+
+
+\begin{mpcode}[title={Node Code}]
+% style d’un nœud interne (non feuille) de l’arbre 
+vardef newHuffmanNode@#(expr v) text options=
+    newCircle.@#("") "circmargin(_node_size)",options;
+    if(show_node_values):
+    ObjLabel.Obj(scantokens(str @#))(textext(v));
+    fi
+enddef;
+\end{mpcode}
+
+\begin{mpcode}[title={Tree Code}]
+% style de l’arbre binaire de Huffman
+vardef newHuffmanBinTree@#(suffix theroot)(text subtrees) text options=
+    % un simple arbre
+    newTree.@#(theroot)(subtrees) "Dalign(top)" , "hbsep(0.3cm)",options;
+    if(show_bits):
+        % et on met 0 et 1 sur ses deux connections
+        ObjLabel.Obj(@#)(btex 0 etex)
+        "labpathid(1)", "laberase(true)", "labcolor(_huffmanBit)";
+        ObjLabel.Obj(@#)(btex 1 etex)
+        "labpathid(2)", "laberase(true)", "labcolor(_huffmanBit)";
+    fi
+enddef;
+\end{mpcode}
 
 \printbibliography
 \printindex
