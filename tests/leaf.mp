@@ -7,10 +7,14 @@ charList[2]:="s_2"; frequency[2]:=4;
 charList[3]:="s_3"; frequency[3]:=2;
 charList[4]:="s_4"; frequency[4]:=12;
 charList[5]:="s_5"; frequency[5]:=8;
-
+show_leaf_values:=false;
+show_leaf_values:=false;
+show_bits:=false;
 newBinHuffman.myHuff(5)(charList,frequency);
 myHuff.c=origin;
-nbox(treeroot(Obj(myHuff))(2,1))(treeroot(Obj(myHuff))(2,2));
+%nbox(treeroot(Obj(myHuff))(2,1))(treeroot(Obj(myHuff))(2,2));
+%showObj leaf1_1;
+ncarcbox(leaf11)(leaf21);
 drawObj(myHuff);
 endfig;
 end

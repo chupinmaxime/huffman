@@ -2,7 +2,7 @@
 %%BoundingBox: -76 -116 76 116 
 %%HiResBoundingBox: -75.0505 -115.1689 75.0505 115.1689 
 %%Creator: MetaPost 2.02
-%%CreationDate: 2023.04.29:1426
+%%CreationDate: 2023.05.05:1431
 %%Pages: 1
 %*Font: cmr10 9.96265 9.96265 30:ea8
 %*Font: cmr7 6.97385 6.97385 31:f8
@@ -12,13 +12,6 @@
 %%Page: 1 1
  0 0 0 setrgbcolor 0 0.5 dtransform truncate idtransform setlinewidth pop
  [] 0 setdash 1 setlinecap 1 setlinejoin 10 setmiterlimit
-newpath 15.36938 -5.15776 moveto
-52.68004 -1.17934 lineto stroke
-newpath 49.16786 -3.09317 moveto
-52.68004 -1.17934 lineto
-48.84328 -0.04907 lineto
- closepath
-gsave fill grestore stroke
 newpath -10.21696 94.00768 moveto
 -53.00853 60.66957 lineto stroke
 newpath -51.03395 64.14862 moveto

@@ -1,0 +1,70 @@
+%!PS
+%%BoundingBox: -26 -28 26 28 
+%%HiResBoundingBox: -25.6813 -27.09267 25.68132 27.09268 
+%%Creator: MetaPost 2.02
+%%CreationDate: 2023.05.06:1613
+%%Pages: 1
+%*Font: cmr10 9.96265 9.96265 2e:b2000000000018
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+ 0 0 0 setrgbcolor 0 0.5 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 1 setlinecap 1 setlinejoin 10 setmiterlimit
+newpath -3.11905 14.42247 moveto
+-17.35664 -13.92427 lineto stroke
+newpath -17.06589 -9.93483 moveto
+-17.35664 -13.92427 lineto
+-14.33005 -11.30894 lineto
+ closepath
+gsave fill grestore stroke
+newpath 2.9774 14.42215 moveto
+16.56728 -13.92427 lineto stroke
+newpath 13.58939 -11.2537 moveto
+16.56728 -13.92427 lineto
+16.35004 -9.9302 lineto
+ closepath
+gsave fill grestore stroke
+ 1 1 1 setrgbcolor
+newpath -25.4313 -13.92415 moveto
+-25.4313 -24.21364 lineto
+-14.44995 -24.21364 lineto
+-14.44995 -13.92415 lineto
+ closepath fill
+ 0 0 0 setrgbcolor
+newpath -25.4313 -13.92415 moveto
+-25.4313 -24.21364 lineto
+-14.44995 -24.21364 lineto
+-14.44995 -13.92415 lineto
+ closepath stroke
+-22.43129 -21.21362 moveto
+(a) cmr10 9.96265 fshow
+ 1 1 1 setrgbcolor
+newpath 13.8965 -13.92415 moveto
+13.8965 -26.84267 lineto
+25.43132 -26.84267 lineto
+25.43132 -13.92415 lineto
+ closepath fill
+ 0 0 0 setrgbcolor
+newpath 13.8965 -13.92415 moveto
+13.8965 -26.84267 lineto
+25.43132 -26.84267 lineto
+25.43132 -13.92415 lineto
+ closepath stroke
+16.8965 -23.84265 moveto
+(b) cmr10 9.96265 fshow
+ 1 1 1 setrgbcolor
+newpath -11.8557 26.84268 moveto
+-11.8557 14.4223 lineto
+11.85573 14.4223 lineto
+11.85573 26.84268 lineto
+ closepath fill
+ 0 0 0 setrgbcolor
+newpath -11.8557 26.84268 moveto
+-11.8557 14.4223 lineto
+11.85573 14.4223 lineto
+11.85573 26.84268 lineto
+ closepath stroke
+-8.8557 17.42232 moveto
+(0.14) cmr10 9.96265 fshow
+showpage
+%%EOF

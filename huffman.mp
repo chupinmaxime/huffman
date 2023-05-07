@@ -47,6 +47,7 @@ vardef newHuffmanLeaf@#(expr ch)(expr v) text options=
     % v est la proba ou l’entier associé
     save _text_v, _text_token,_height_v,_height_token,_height_max,_width_token,_width_v;
     picture _text_v,_text_token;
+    show @#;
     % on calcule le height max des deux écritures pour faire deux boites de même
     % hauteur 
     _text_v := textext(v);
@@ -70,6 +71,7 @@ vardef newHuffmanLeaf@#(expr ch)(expr v) text options=
         % on fabrique un container qui les regroupes et qui sera la feuille
         newContainer.@#(scantokens(str @# & "ch1"),scantokens(str @# & "ch2"));
     else:
+        show "coucou", @#;
         newBox.@#(textext("$" & ch & "$"))
         "framed(true)","fillcolor(_huffmanLeaf)", "filled(true)", options;
     fi
@@ -150,66 +152,66 @@ vardef newBinHuffman@#(expr nbr)(suffix ch, fr) text options=
                     % on fabrique la feuille
                     _nbrleaf:=_nbrleaf+1;
                     newHuffmanLeaf.scantokens("leaf"&decimal
-                    _nbrleaf&"_"&decimal _huffmanTreeNbr)(_chtab[1])(decimal
+                    _nbrleaf&decimal _huffmanTreeNbr)(_chtab[1])(decimal
                     roundd(_frtab[1],2));
                     if(substring (0,1) of _chtab[2]<>"T"): %(symbole, symbole)
                         % on fabrique la feuille
                         _nbrleaf:=_nbrleaf+1;
                         newHuffmanLeaf.scantokens("leaf"&decimal
-                        _nbrleaf&"_"&decimal _huffmanTreeNbr)(_chtab[2])(decimal
+                        _nbrleaf&decimal _huffmanTreeNbr)(_chtab[2])(decimal
                         roundd(_frtab[2],2));
                         % on fabrique le nœud qui et l’arbre qui a les deux
                         % feuilles en descendants
                         _tmpsum:=_frtab[1]+_frtab[2];
-                        newHuffmanNode.scantokens("node"&decimal _nbrnode&"_"&decimal _huffmanTreeNbr)(decimal roundd(_tmpsum,2));
+                        newHuffmanNode.scantokens("node"&decimal _nbrnode&decimal _huffmanTreeNbr)(decimal roundd(_tmpsum,2));
                         newHuffmanBinTree.scantokens("Tree"&decimal
-                        _nbrnode&"_"&decimal _huffmanTreeNbr)(scantokens("node"&decimal
-                        _nbrnode&"_"&decimal
+                        _nbrnode&decimal _huffmanTreeNbr)(scantokens("node"&decimal
+                        _nbrnode&decimal
                         _huffmanTreeNbr))(scantokens("leaf"&decimal(
-                        _nbrleaf-1)&"_"&decimal
+                        _nbrleaf-1)&decimal
                         _huffmanTreeNbr),scantokens("leaf"&decimal(
-                        _nbrleaf)&"_"&decimal
+                        _nbrleaf)&decimal
                         _huffmanTreeNbr)) options;                    
                     else:   %(symbole, sousarbre)
                         _tmpsum:=_frtab[1]+_frtab[2];
-                        newHuffmanNode.scantokens("node"&decimal _nbrnode&"_"&decimal _huffmanTreeNbr)(decimal roundd(_tmpsum,2));
+                        newHuffmanNode.scantokens("node"&decimal _nbrnode&decimal _huffmanTreeNbr)(decimal roundd(_tmpsum,2));
                         newHuffmanBinTree.scantokens("Tree"&decimal
-                        _nbrnode&"_"&decimal
+                        _nbrnode&decimal
                         _huffmanTreeNbr)(scantokens("node"&decimal
-                        _nbrnode&"_"&decimal
+                        _nbrnode&decimal
                         _huffmanTreeNbr))(scantokens("leaf"&decimal(
-                        _nbrleaf)&"_"&decimal
+                        _nbrleaf)&decimal
                         _huffmanTreeNbr),scantokens(_chtab[2])) options;
                     fi
                 else: %(sousarber,*)
                     if(substring (0,1) of _chtab[2]<>"T"): %(sousarbre,symbole)
                         _nbrleaf:=_nbrleaf+1;
                         newHuffmanLeaf.scantokens("leaf"&decimal(
-                        _nbrleaf)&"_"&decimal
+                        _nbrleaf)&decimal
                         _huffmanTreeNbr)(_chtab[2])(decimal
                         roundd(_frtab[2],2));
                         _tmpsum:=_frtab[1]+_frtab[2];
-                        newHuffmanNode.scantokens("node"&decimal _nbrnode&"_"&decimal _huffmanTreeNbr)(decimal
+                        newHuffmanNode.scantokens("node"&decimal _nbrnode&decimal _huffmanTreeNbr)(decimal
                         roundd(_tmpsum,2));
                         newHuffmanBinTree.scantokens("Tree"&decimal
-                        _nbrnode&"_"&decimal _huffmanTreeNbr)(scantokens("node"&decimal
-                        _nbrnode&"_"&decimal
+                        _nbrnode&decimal _huffmanTreeNbr)(scantokens("node"&decimal
+                        _nbrnode&decimal
                         _huffmanTreeNbr))(scantokens(_chtab[1]),scantokens("leaf"&decimal(
-                        _nbrleaf)&"_"&decimal
+                        _nbrleaf)&decimal
                         _huffmanTreeNbr)) options;    
                     else:   % (sousarbre, sousarbre)
                         _tmpsum:=_frtab[1]+_frtab[2];
-                        newHuffmanNode.scantokens("node"&decimal _nbrnode&"_"&decimal _huffmanTreeNbr)(decimal roundd(_tmpsum,2));
+                        newHuffmanNode.scantokens("node"&decimal _nbrnode&decimal _huffmanTreeNbr)(decimal roundd(_tmpsum,2));
                         newHuffmanBinTree.scantokens("Tree"&decimal
-                        _nbrnode&"_"&decimal
+                        _nbrnode&decimal
                         _huffmanTreeNbr)(scantokens("node"&decimal
-                        _nbrnode&"_"&decimal
+                        _nbrnode&decimal
                         _huffmanTreeNbr))(scantokens(_chtab[1]),scantokens(_chtab[2]))
                         options;
                     fi
                 fi
                 % on indique dans la première case le nom de l’arbre créé
-                _chtab[1]:="Tree"&decimal _nbrnode&"_"&decimal _huffmanTreeNbr;
+                _chtab[1]:="Tree"&decimal _nbrnode&decimal _huffmanTreeNbr;
                 % et sa valeur
                 _frtab[1]:=_frtab[1]+_frtab[2];
                 _nbrnode:=_nbrnode+1;
@@ -223,7 +225,7 @@ vardef newBinHuffman@#(expr nbr)(suffix ch, fr) text options=
     endfor;
     % on dublique l’objet en prenant comme nom ce qui est donné à l’utilisation
     % de newHuffman 
-    duplicateObj(@#,scantokens("Tree"&decimal(_nbrnode-1)&"_"&decimal
+    duplicateObj(@#,scantokens("Tree"&decimal(_nbrnode-1)&decimal
     _huffmanTreeNbr));
 enddef;
 
