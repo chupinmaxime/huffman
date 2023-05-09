@@ -322,7 +322,7 @@ drawObj(myHuff);
 endfig;
 \end{ExempleMP}
   
-\subsection{Access to Nodes and Leaves}
+\section{Access to Nodes and Leaves}
 
 To access the nodes and the trees, you can use the \lstinline+treeroot+ command
 from \MO/, see the documentation for details.
@@ -354,6 +354,47 @@ endfig;
 
 Of course, this only can be used in two steps, first build the tree, then
 annotate it. 
+
+You can also access the leaves and the nodes using names. During construction of
+the tree, names are given to leaves and nodes. Because you may want to build
+several Huffman trees, the trees are numbered. You can get the current tree
+number with the following command:
+
+\commande|get_huffmanTreeNbr()|\smallskip\index{get_huffmanTreeNbr@\lstinline+get_huffmanTreeNbr+}
+
+The leaves are numbered during the construction, and the corresponding \MO/
+object is named as follows:
+
+\commande|leaf«leaf number»_«tree number»|\smallskip
+
+The nodes are numbered during the construction, and the corresponding \MO/
+object is named as follows:
+
+\commande|node«node number»_«tree number»|\smallskip
+
+Thanks to \MO/ you can annotate the tree using all the tools \MO/ provides. 
+
+\begin{ExempleMP}
+input huffman;
+beginfig(0);
+string charList[];
+numeric frequency[];
+charList[1]:="s_1"; frequency[1]:=2;
+charList[2]:="s_2"; frequency[2]:=4;
+charList[3]:="s_3"; frequency[3]:=2;
+charList[4]:="s_4"; frequency[4]:=12;
+charList[5]:="s_5"; frequency[5]:=8;
+
+newBinHuffman.myHuff(5)(charList,frequency);
+myHuff.c=origin;
+ncarcbox(leaf3_1)(leaf4_1)
+"linestyle(dashed evenly)", "nodesepA(5mm)", "nodesepB(5mm)" ;
+drawObj(myHuff);
+endfig;
+\end{ExempleMP}
+  
+
+
 
 \section{Constructors}
 

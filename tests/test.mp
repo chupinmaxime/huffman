@@ -15,8 +15,9 @@ charList[2]:="s_5"; frequency[2]:=0.1;
 charList[6]:="s_6"; frequency[6]:=0.1;
 charList[7]:="s_7"; frequency[7]:=0.18;
 charList[8]:="s_8"; frequency[8]:=0.4;
-newBinHuffman.myHuff(8)(charList,frequency)  "hbsep(.6cm)", "treeflip(false)", "hideleaves(true)","framed(true)";
+newBinHuffman.myHuff(8)(charList,frequency)  "hbsep(.6cm)", "treeflip(false)";
 myHuff.c=origin;
+ncarcbox(leaf1_1)(leaf2_1);
 drawObj(myHuff);
 endfig;
 end
