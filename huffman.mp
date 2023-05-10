@@ -1,3 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                        huffman.mp                          %%
+%%              draw huffman trees with metapost              %%
+%%                     notezik@gmail.com                      %%
+%%                Version 0.1 (may 2023)                      %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, either version 1.3c of this license
+% or (at your option) any later version.  The latest version of this
+% license is in http://www.latex-project.org/lppl.txt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 input metaobj;
 if not known mplib: input latexmp fi;
 input format; % pour avoir la fonction roundd(x,d)
@@ -256,10 +271,6 @@ vardef newBinHuffman@#(expr nbr)(suffix ch, fr) text options=
         endfor
         _nbr:=_nbr-1;    
     endfor;
-    % on dublique l’objet en prenant comme nom ce qui est donné à l’utilisation
-    % de newHuffman 
-    %duplicateObj(@#,scantokens("Tree"&decimal(_nbrnode-1)&"_"&decimal
-    %_huffmanTreeNbr));
 enddef;
 
 

@@ -70,7 +70,7 @@ endfig;
 }
 \vfill
 \begin{center}
-  Version 0.1, 2023, April, 21th \\
+  Version 0.1, 2023, May, 10th \\
   \url{https://plmlab.math.cnrs.fr/mchupin/huffman}
 \end{center}
 %% == Page de garde ====================================================
@@ -80,7 +80,8 @@ endfig;
 
 \begin{abstract}
   This \hologo{METAPOST} package allows to draw binary Huffman trees from two
-  arrays : a string one, and a value one. It is based on \MO/ package which
+  arrays : an arraw of strings, and an array of weights (\lstinline+numeric+).
+  It is based on the \MO/ package which
   provides many tools to build trees in general.
 \end{abstract}
 
@@ -119,19 +120,19 @@ distribution.
 \subsection{With \TeX live under Linux or macOS}
 
 To install \huffman with \TeX Live, you will have to create the directory
-\lstinline+texmf+ directory in your \lstinline+home+. 
+\lstinline+texmf+  in your \lstinline+home+. 
 
 \begin{commandshell}
 mkdir ~/texmf
 \end{commandshell}
 
-Then, you will have to place the \lstinline+huffman.mp+ file in the 
+Then, you will have to place the \lstinline+huffman.mp+ file in 
 \begin{center}
   \lstinline+~/texmf/metapost/huffman/+
 \end{center}
 
 
-Once this is done, \huffman will be loaded with the classic \MP
+Once this is done, \huffman will be loaded with the classic \MP{}
 input code
 \begin{mpcode}
 input huffman
@@ -150,9 +151,10 @@ refer you to the Mik\TeX documentation concerning the addition of local packages
 \subsection{Dependencies}
 
 
-\huffman depends, of course on \MP~\cite{ctan-metapost}, as well as the packages \package{metaobj}~\cite{ctan-metaobj}
-and---if \huffman is not used with \hologo{LuaLaTeX} and the \package{luamplib}
-package---the \package{latexmp} package.
+\huffman depends, of course on \MP~\cite{ctan-metapost}, as well as the packages
+\package{metaobj}~\cite{ctan-metaobj} and---if \huffman is not used with
+\hologo{LuaLaTeX} and the \package{luamplib} package---the \package{latexmp}
+package. 
 
 \section{Main Command}
 
@@ -164,11 +166,11 @@ constructor):
 
 \begin{description}
   \item[\meta{name}:] is the name of the object;
-  \item[\meta{sizeofarray}:] is the size (integer) of the arrays;
+  \item[\meta{sizeofarrays}:] is the size (integer) of the arrays;
   \item[\meta{symbarray}:] is the array of \lstinline+string+ containing the
-  symboles;
+  symbols;
   \item[\meta{valuearray}:] is the array of \lstinline+numeric+ containing the
-  values associated to the symboles.
+  weights associated to the symbols.
 \end{description}
 
 The data arrays should begin at index 1.  
@@ -194,7 +196,7 @@ drawObj(myHuff);
 endfig;
 \end{ExempleMP}
 
-Beware, the symbols are composed in mathematical \TeX{} mode. 
+Note that the symbols are composed in mathematical \TeX{} mode. 
 \section{Package Options}
 
 You can modify the size of the internal nodes of the tree with the following
@@ -202,7 +204,7 @@ command:
 
 \commande|set_node_size(«dim»)|\smallskip\index{set_node_size@\lstinline+set_node_size+}
 \begin{description}
-  \item[\meta{dim}:] is the diameter of the circle with unity (default: 13pt).
+  \item[\meta{dim}:] is the diameter with unit of the circle (default: 13pt).
 \end{description} 
 
 You can change the color for the symbol boxes with the following command:
@@ -212,7 +214,8 @@ You can change the color for the symbol boxes with the following command:
   \item[\meta{color}:] is a \hologo{METAPOST} \lstinline+color+.
 \end{description} 
 
-You can hide the bit in the edges of the tree with the following boolean
+You can hide the bit values printed on the edges of the tree with the following
+boolean 
 (\lstinline+true+ by default):
 
 \commande|show_bits|\smallskip\index{show_bits@\lstinline+show_bits+}
@@ -256,10 +259,10 @@ endfig;
 
 \section{\MO/ Tree Options}
 
-Because the Huffman tree is build using \MO/ tree constructor, the \MO/ tree
+Because the Huffman tree is built using the \MO/ tree constructor, the \MO/ tree
 options are available. All of them are not well suited for this application
-mostly because the Huffman tree is build using elementary trees, to which the
-options we give to the Huffman constructor is passed to all the subtrees.
+mostly because the Huffman tree is built using elementary trees. The
+options we give to the Huffman constructor are passed to all the subtrees.
 
 We give in table~\ref{tab:options} the \MO/ options for the trees that could be
 used for the Huffman constructor.
@@ -301,7 +304,7 @@ used for the Huffman constructor.
 \caption{Table of \MO/ tree options.}\label{tab:options}
 \end{table}
 
-Here is an example of using some of these options.
+Here is an example using some of these options.
 
 \begin{ExempleMP}
 input huffman
@@ -324,7 +327,7 @@ endfig;
   
 \section{Access to Nodes and Leaves}
 
-To access the nodes and the trees, you can use the \lstinline+treeroot+ command
+To access the nodes and the leaves, you can use the \lstinline+treeroot+ command
 from \MO/, see the documentation for details.
 
 \commande|ntreepos(Obj(«name»))(«int»,«int»,etc.)|\smallskip\index{ntreepos@\lstinline+ntreepos+}
@@ -352,13 +355,13 @@ drawObj(myHuff);
 endfig;
 \end{ExempleMP}
 
-Of course, this only can be used in two steps, first build the tree, then
+Of course, this can only be used in two steps, first build the tree, then
 annotate it. 
 
-You can also access the leaves and the nodes using names. During construction of
-the tree, names are given to leaves and nodes. Because you may want to build
-several Huffman trees, the trees are numbered. You can get the current tree
-number with the following command:
+You can also access the leaves and the nodes using names. During the
+construction of the tree, names are given to leaves and nodes. Because you may
+want to build several Huffman trees, the trees are numbered. You can get the
+current tree number with the following command:
 
 \commande|get_huffmanTreeNbr()|\smallskip\index{get_huffmanTreeNbr@\lstinline+get_huffmanTreeNbr+}
 
@@ -402,9 +405,9 @@ endfig;
 
 \section{Constructors}
 
-The Huffman algorithm use only three constructors that you can redefine to adapt
+The Huffman algorithm uses only three constructors that you can redefine to adapt
 the tree to your needs. Here are the three constructors (roughly commented in
-French) defined in this package. We will no discus the code here but
+French) defined in this package. We will not discuss the code here but
 you are free to redefine and adapt it.
 
 \begin{mpcode}[title={Leaf Code}]

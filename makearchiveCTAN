@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+mkdir -p huffman/metapost
+mkdir -p huffman/doc
+
+cp huffman.mp huffman/metapost
+
+cp doc/fond.pdf huffman/doc/
+cp doc/ctan.bib huffman/doc/
+cp doc/huffman-doc-en.pdf huffman/doc/
+cp doc/huffman-doc-en.tex huffman/doc/
+cp doc/huffman-preamble.tex huffman/doc/
+
+
+cp README.md huffman/
+cp LICENSE huffman/
+
+
+zip -r archives/huffman-v0.1-CTAN.zip huffman/
+
+rm -r huffman
